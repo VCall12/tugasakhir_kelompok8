@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
@@ -36,10 +38,21 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
+  late Timer? _timer;
+  String jam = "Tes";
+  @override
+  void initState() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        jam = DateFormat('HH:mm:ss').format(DateTime.now());
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var waktu = DateTime.now();
-    var jam = DateFormat('HH:mm:s').format(waktu);
     var tanggal = DateFormat("EEEE, d MMMM yyyy").format(waktu);
 
     return Scaffold(
@@ -86,15 +99,14 @@ class _SchedulePageState extends State<SchedulePage> {
               ),
               onPressed: () {
                 Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Task();
-                },
-              ),
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Task();
+                    },
+                  ),
                 );
               },
-              
             ),
           ],
         ),
