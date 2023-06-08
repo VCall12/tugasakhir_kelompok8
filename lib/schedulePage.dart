@@ -1,36 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:tugasakhir_kelompok8/getStarted.dart';
 import 'package:tugasakhir_kelompok8/task.dart';
-import './data.dart';
-import './getStarted.dart';
 
-void main() async {
-  //init hive
-  await Hive.initFlutter();
-
-  //open box
-  var box = await Hive.openBox('mybox');
-
-  runApp(Homepage());
-}
-
-class Homepage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MusicJukebox',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const Login(),
-    );
-  }
-}
+import 'data.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
